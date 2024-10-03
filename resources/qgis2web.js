@@ -4,15 +4,12 @@ var map = new ol.Map({
     renderer: 'canvas',
     layers: layersList,
     view: new ol.View({
-         maxZoom: 28, minZoom: 1, projection: new ol.proj.Projection({
-            code: 'EPSG:5897',
-            //extent: [-20037508.342789, -20037508.342789, 20037508.342789, 20037508.342789],
-            units: 'm'})
+         maxZoom: 28, minZoom: 1
     })
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([517269.050274, 2287795.267796, 636964.925938, 2355149.905734], map.getSize());
+map.getView().fit([11726630.979051, 2350563.434426, 11850312.439858, 2423773.513855], map.getSize());
 
 ////small screen definition
     var hasTouchScreen = map.getViewport().classList.contains('ol-touch');
@@ -831,11 +828,21 @@ if (elementToMove && parentElement) {
 
 //geocoder
 
+var geocoder = new Geocoder('nominatim', {
+  provider: 'osm',
+  lang: 'en-US',
+  placeholder: 'Search place or address ...',
+  limit: 5,
+  keepOpen: true,
+});
+map.addControl(geocoder);
+document.getElementsByClassName('gcd-gl-btn')[0].className += ' fa fa-search';
+
 
 //layer search
 
 var searchLayer = new SearchLayer({
-    layer: lyr_QHCdieuchinhTuyen_5,
+    layer: lyr_QHCiuchnhPhnTuyn_5,
     colName: 'tuyen',
     zoom: 10,
     collapsed: true,
@@ -852,11 +859,22 @@ document.getElementsByClassName('search-layer-input-search')[0].placeholder = 'S
 //layerswitcher
 
 var layerSwitcher = new ol.control.LayerSwitcher({
-    tipLabel: "Layers",
-    target: 'top-right-container'
-});
+    activationMode: 'click',
+	startActive: true,
+	tipLabel: "Layers",
+    target: 'top-right-container',
+	collapseLabel: '»',
+	collapseTipLabel: 'Close'
+    });
 map.addControl(layerSwitcher);
-    
+if (hasTouchScreen || isSmallScreen) {
+	document.addEventListener('DOMContentLoaded', function() {
+		setTimeout(function() {
+			layerSwitcher.hidePanel();
+		}, 500);
+	});	
+}
+
 
 
 

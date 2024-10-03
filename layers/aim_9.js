@@ -1,0 +1,1 @@
+var json_aim_9 = {"type":"FeatureCollection","name":"aim_9","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"ten":"SÂN BAY PHÍA NAM","loai":"sb"},"geometry":{"type":"Point","coordinates":[105.862911934022506,20.685831020524272]}}]}
