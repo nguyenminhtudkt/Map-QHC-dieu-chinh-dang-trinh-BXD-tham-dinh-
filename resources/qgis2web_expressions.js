@@ -766,7 +766,7 @@ function fnc_project_color(values, context) {
 
 
 
-function exp_aim_9rule0_eval_expression(context) {
+function exp_Diadiem_14rule0_eval_expression(context) {
     // loai = 'sb'
 
     var feature = context.feature;
